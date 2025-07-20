@@ -12,9 +12,8 @@ resource "aws_instance" "ec2"{
   ami = data.aws_ami.al2023.id
   vpc_security_group_ids = [ aws_security_group.ec2sg.id ]
   key_name = aws_key_pair.keypair.key_name
-  ebs_block_device {
+  root_block_device {
     volume_size = "30"
-    delete_on_termination = true
-    device_name = "/dev/xvda"
+    volume_type = "standard"
   }
 }
